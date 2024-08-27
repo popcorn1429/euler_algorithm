@@ -28,7 +28,7 @@ long power(long num, int k) {
     return result;
 }
 
-//´øÈë¹«Ê½£¬¼ÆËã formula(i)
+//å¸¦å…¥å…¬å¼ï¼Œè®¡ç®— formula(i)
 long calc_formula(const vector<long>& formula, int i) {
     long result = 0;
     for (int k = 0; k < formula.size(); ++i) {
@@ -37,20 +37,20 @@ long calc_formula(const vector<long>& formula, int i) {
     return result;
 }
 
-//¸ù¾İ¹«Ê½£¬ÅĞ¶Ï formula(i) ÊÇ·ñµÈÓÚ j
+//æ ¹æ®å…¬å¼ï¼Œåˆ¤æ–­ formula(i) æ˜¯å¦ç­‰äº j
 bool fit_formula(const vector<long>& formula, int i, long j) {
     return calc_formula(formula, i) == j;
 }
 
-//ÍÆµ¼¹«Ê½
+//æ¨å¯¼å…¬å¼
 void derive_formula(const vector<long>& sequence, int i, vector<long>& formula) {
-    //²»ÖªµÀÔõÃ´Ğ´³öÍ¨ÓÃÊµÏÖ ...
+    //ä¸çŸ¥é“æ€ä¹ˆå†™å‡ºé€šç”¨å®ç° ...
 
 }
 
-//ÏÈÅĞ¶ÏÈë²ÎformulaÊÇ·ñÊÇÕıÈ·¹«Ê½£¨¶Ôµ±Ç°iÏî¶øÑÔ£©
-//Èç¹ûÊÇ£¬¼ÌĞøËã³ö formula(i+1)
-//Èç¹û²»ÊÇ£¬¸ù¾İÇ° i ÏîËã³öÕıÈ·µÄ¹«Ê½ £¨ i ´Î¶àÏîÊ½£©¸üĞÂformula£¬È»ºó¼ÆËã formula(i+1)
+//å…ˆåˆ¤æ–­å…¥å‚formulaæ˜¯å¦æ˜¯æ­£ç¡®å…¬å¼ï¼ˆå¯¹å½“å‰ié¡¹è€Œè¨€ï¼‰
+//å¦‚æœæ˜¯ï¼Œç»§ç»­ç®—å‡º formula(i+1)
+//å¦‚æœä¸æ˜¯ï¼Œæ ¹æ®å‰ i é¡¹ç®—å‡ºæ­£ç¡®çš„å…¬å¼ ï¼ˆ i æ¬¡å¤šé¡¹å¼ï¼‰æ›´æ–°formulaï¼Œç„¶åè®¡ç®— formula(i+1)
 long guess_formula(const vector<long>& sequence, int i, vector<long>& formula) {
     if (fit_formula(formula, i, sequence[i])) {
         return calc_formula(formula, i + 1);

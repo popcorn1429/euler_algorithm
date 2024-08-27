@@ -19,11 +19,11 @@ void print_array(Container c, size_t n) {
 
 class SplitSet {
 public:
-    static int fibonacci[24];         //±£´æÇ°24¸úì³²¨ÄÇÆõÊıÁĞ
-    static vector<int> primes;        //±£´æÖÊÊı£¨´ÓĞ¡µ½´ó£©
-    static char bytes[8192];          //É¸Ñ¡·¨ÓÃÓÚÑ¸ËÙÕÒ³öÖÊÊı£¬Ò²ÓÃÓÚ¿ìËÙÅĞ¶ÏÒ»¸öÊıÊÇ·ñÊÇÖÊÊı
+    static int fibonacci[24];         //ä¿å­˜å‰24è·Ÿæ–æ³¢é‚£å¥‘æ•°åˆ—
+    static vector<int> primes;        //ä¿å­˜è´¨æ•°ï¼ˆä»å°åˆ°å¤§ï¼‰
+    static char bytes[8192];          //ç­›é€‰æ³•ç”¨äºè¿…é€Ÿæ‰¾å‡ºè´¨æ•°ï¼Œä¹Ÿç”¨äºå¿«é€Ÿåˆ¤æ–­ä¸€ä¸ªæ•°æ˜¯å¦æ˜¯è´¨æ•°
 public:
-    //Ò»¿ªÊ¼Òª¿¿Õâ¸öº¯ÊıÉú³ÉÊıÁĞ
+    //ä¸€å¼€å§‹è¦é è¿™ä¸ªå‡½æ•°ç”Ÿæˆæ•°åˆ—
     static void calc_fibonacci() {
         fibonacci[0] = 1;
         fibonacci[1] = 1;
@@ -34,7 +34,7 @@ public:
         cout << "fibonacci : " << endl;
         print_array(fibonacci, 24);
     }
-    //Ò»¿ªÊ¼Òª¿¿Õâ¸öº¯ÊıÉú³ÉÖÊÊı
+    //ä¸€å¼€å§‹è¦é è¿™ä¸ªå‡½æ•°ç”Ÿæˆè´¨æ•°
     static void calc_prime() {
         memset(bytes, 0, sizeof(bytes));
         int n = sizeof(bytes);
@@ -59,8 +59,8 @@ public:
 
 public:
     int number;
-    vector<vector<int>> splits;//ËùÓĞµÄ²ğ·Ö·½Ê½µÄ¼¯ºÏ
-    vector<long>        products; //ÉÏÃæµÄÃ¿Ò»ÖÖ×éºÏ·½Ê½µÄ³Ë»ı£¨Êı¾İÁ¿¸úÉÏÃæÍêÈ«ÏàÍ¬ÇÒÎ»ÖÃÒ»Ò»¶ÔÓ¦£©£¬Ã¿¸öÊıÖ»ÁôÏÂ×îºó9Î»
+    vector<vector<int>> splits;//æ‰€æœ‰çš„æ‹†åˆ†æ–¹å¼çš„é›†åˆ
+    vector<long>        products; //ä¸Šé¢çš„æ¯ä¸€ç§ç»„åˆæ–¹å¼çš„ä¹˜ç§¯ï¼ˆæ•°æ®é‡è·Ÿä¸Šé¢å®Œå…¨ç›¸åŒä¸”ä½ç½®ä¸€ä¸€å¯¹åº”ï¼‰ï¼Œæ¯ä¸ªæ•°åªç•™ä¸‹æœ€å9ä½
     
     void reset(int n) {
         number = n;
@@ -69,9 +69,9 @@ public:
     }
 public:
     
-    //Ò»¸ö»ù´¡µÄ²ğ·Ö¹ı³Ì£¬Ğ§ÂÊ»áÔÚnumber½Ï´óÊ±Ã÷ÏÔ±ä²î
-    //µ±Ç°number½ÏĞ¡£¬Ç°ÃæÃ»ÓĞÆäËûµÄnumberÊ±¿ÉÓÃ
-    //¾¡¿ÉÄÜµÄÊ¹ÓÃÏÂÒ»¸öÖØÔØº¯ÊıµÄ·½Ê½
+    //ä¸€ä¸ªåŸºç¡€çš„æ‹†åˆ†è¿‡ç¨‹ï¼Œæ•ˆç‡ä¼šåœ¨numberè¾ƒå¤§æ—¶æ˜æ˜¾å˜å·®
+    //å½“å‰numberè¾ƒå°ï¼Œå‰é¢æ²¡æœ‰å…¶ä»–çš„numberæ—¶å¯ç”¨
+    //å°½å¯èƒ½çš„ä½¿ç”¨ä¸‹ä¸€ä¸ªé‡è½½å‡½æ•°çš„æ–¹å¼
     void split_and_product() {
         vector<int> factors;
         split(number, 0, factors);
@@ -79,12 +79,12 @@ public:
         //print_and_check
         print_and_check();
     }
-    //Èç¹ûµ±Ç°µÄnumberÊÇÇ°ÃæÁ½¸ö¸üĞ¡µÄnumberµÄºÍ£¬ÄÇÁ½¸ö¸üĞ¡µÄnumberÒÑ¾­ÓĞÁË×Ô¼ºµÄÍêÕûµÄ²ğ·Ö¼¯ºÏÁË
-    //µ±Ç°µÄ²ğ·Ö¹ı³Ì¿ÉÒÔ½èÖúÖ®Ç°Á½¸önumberµÄ²ğ·ÖÊı¾İ£¬±ÜÃâÖØ¸´ÀÍ¶¯
+    //å¦‚æœå½“å‰çš„numberæ˜¯å‰é¢ä¸¤ä¸ªæ›´å°çš„numberçš„å’Œï¼Œé‚£ä¸¤ä¸ªæ›´å°çš„numberå·²ç»æœ‰äº†è‡ªå·±çš„å®Œæ•´çš„æ‹†åˆ†é›†åˆäº†
+    //å½“å‰çš„æ‹†åˆ†è¿‡ç¨‹å¯ä»¥å€ŸåŠ©ä¹‹å‰ä¸¤ä¸ªnumberçš„æ‹†åˆ†æ•°æ®ï¼Œé¿å…é‡å¤åŠ³åŠ¨
     void split_and_product(const SplitSet& left, const SplitSet& right) {
         clock_t t_step_1 = clock();
         splits.reserve(left.splits.size() * right.splits.size() * 2);
-        //¹æÂÉ1 £º Èç¹ûµ±Ç°ÊÇÅ¼Êı£¬Ç°ÃæÁ©Ò»¶¨ÊÇÆæÊı£¬Ò»¶¨²»»á´øÀ´ 2+2+2+...+2 ÕâÑùµÄ×éºÏ£¬Õâ¸öÒ²Ò»¶¨ĞèÒª´æÔÚ£¬ËùÒÔÏÈ²¹ÉÏ
+        //è§„å¾‹1 ï¼š å¦‚æœå½“å‰æ˜¯å¶æ•°ï¼Œå‰é¢ä¿©ä¸€å®šæ˜¯å¥‡æ•°ï¼Œä¸€å®šä¸ä¼šå¸¦æ¥ 2+2+2+...+2 è¿™æ ·çš„ç»„åˆï¼Œè¿™ä¸ªä¹Ÿä¸€å®šéœ€è¦å­˜åœ¨ï¼Œæ‰€ä»¥å…ˆè¡¥ä¸Š
         if (number % 2 == 0) {
             int n = number / 2;
             vector<int> m(n, 2);
@@ -93,16 +93,16 @@ public:
             splits.back().swap(m);
         }
         clock_t t_step_2 = clock();
-        //2 Ç°Á½¸öÊıËùÓĞ²ğ½â×éºÏµÄÁ½Á½½áºÏ£¨¿ÉÄÜ³öÏÖÖØ¸´µÄ½áºÏ£¬ĞèÒªÅĞ¶ÏÅÅÖØ£©
-        // ×¢Òâ£¬Ã¿Ò»¸ö²ğ·ÖĞÎÊ½£¬¶¼±£³ÖÔªËØµİÔö£¨±ãÓÚºóÃæÅÅÖØ¼°ÆäËû²Ù×÷£©
+        //2 å‰ä¸¤ä¸ªæ•°æ‰€æœ‰æ‹†è§£ç»„åˆçš„ä¸¤ä¸¤ç»“åˆï¼ˆå¯èƒ½å‡ºç°é‡å¤çš„ç»“åˆï¼Œéœ€è¦åˆ¤æ–­æ’é‡ï¼‰
+        // æ³¨æ„ï¼Œæ¯ä¸€ä¸ªæ‹†åˆ†å½¢å¼ï¼Œéƒ½ä¿æŒå…ƒç´ é€’å¢ï¼ˆä¾¿äºåé¢æ’é‡åŠå…¶ä»–æ“ä½œï¼‰
         
-        // ÕâÒ»²½ºÄÊ±¾ªÈË£¬ÇÒËæ×ÅnumberµÄÔö´ó£¬ÆäÔö³¤¼«¿ì
-        // splits²ğ·Ö¼¯ºÏÑ¸ËÙÅòÕÍ£¬ÄÚ´æºÄ·ÑÒ²¼«Îª¾Ş´ó
-        // ËäÈ»¿ÉÄÜÕâÌ×Ëã·¨ÊÇÕıÈ·µÄ£¬µ«ÊÇ¶ÔÓÚ±¾ÌâµÄÇó½âÃ»ÓĞ°ïÖú£¬ÍêÈ«²»ÄÜÔÚ¿ÉÈÌÊÜµÄÊ±¼ä·¶Î§ÄÚÍê³É
+        // è¿™ä¸€æ­¥è€—æ—¶æƒŠäººï¼Œä¸”éšç€numberçš„å¢å¤§ï¼Œå…¶å¢é•¿æå¿«
+        // splitsæ‹†åˆ†é›†åˆè¿…é€Ÿè†¨èƒ€ï¼Œå†…å­˜è€—è´¹ä¹Ÿæä¸ºå·¨å¤§
+        // è™½ç„¶å¯èƒ½è¿™å¥—ç®—æ³•æ˜¯æ­£ç¡®çš„ï¼Œä½†æ˜¯å¯¹äºæœ¬é¢˜çš„æ±‚è§£æ²¡æœ‰å¸®åŠ©ï¼Œå®Œå…¨ä¸èƒ½åœ¨å¯å¿å—çš„æ—¶é—´èŒƒå›´å†…å®Œæˆ
 
-        // ¿¼ÂÇÈ¥µôsplitsÈİÆ÷£¬²»±£´æ²ğ·ÖÏ¸½Ú
-        // µ«ÊÇ»¹Ã»ÏëºÃÃ»ÁËsplitsÒªÈçºÎÕıÈ·µÃµ½number²ğ·Ö³Ë»ı£¬×îÖØÒªµÄÊÇÈçºÎ±£Ö¤ËùÓĞ²ğ·Ö·½°¸¶¼Ã»ÓĞÖØ¸´ºÍÒÅÂ©
-        // ÕâµÀÌâ£¬ÎÒÔ¤¸ĞÒªÀÃÎ²ÁË~~
+        // è€ƒè™‘å»æ‰splitså®¹å™¨ï¼Œä¸ä¿å­˜æ‹†åˆ†ç»†èŠ‚
+        // ä½†æ˜¯è¿˜æ²¡æƒ³å¥½æ²¡äº†splitsè¦å¦‚ä½•æ­£ç¡®å¾—åˆ°numberæ‹†åˆ†ä¹˜ç§¯ï¼Œæœ€é‡è¦çš„æ˜¯å¦‚ä½•ä¿è¯æ‰€æœ‰æ‹†åˆ†æ–¹æ¡ˆéƒ½æ²¡æœ‰é‡å¤å’Œé—æ¼
+        // è¿™é“é¢˜ï¼Œæˆ‘é¢„æ„Ÿè¦çƒ‚å°¾äº†~~
         size_t sz_left = left.products.size();
         size_t sz_right = right.products.size();
         vector<int> merged;
@@ -122,7 +122,7 @@ public:
             }
         }
         clock_t t_step_3 = clock();
-        //3 ÆäËûÇé¿ö
+        //3 å…¶ä»–æƒ…å†µ
         int max_prime_in_left = max_prime(left.number);
         int max_prime_in_right = max_prime(right.number);
         int max_prime_before = (max_prime_in_left < max_prime_in_right) ? max_prime_in_right : max_prime_in_left;
@@ -135,9 +135,9 @@ public:
         }
         ++pos;
         while (primes[pos] <= max_prime_in_this) {
-            //ÕâÀïÊÇ¸÷ÖÖ°üº¬ÁË primes[pos] µÄ²ğ·Ö·½Ê½µÄÉú³É
+            //è¿™é‡Œæ˜¯å„ç§åŒ…å«äº† primes[pos] çš„æ‹†åˆ†æ–¹å¼çš„ç”Ÿæˆ
             vector<int> factors;
-            split(number - primes[pos], 0, factors, primes[pos]);  //ÕâÀï¿ÉÄÜÓĞ¾Ş´óµÄĞÔÄÜÎÊÌâ£¨ËäÈ»number±»¼õĞ¡ÁË£¬µ«ÊÇÒÀÈ»ÊÇÒ»¸öËöËéµÄ²ğ·Ö£¬ÇÒÖ®Ç°ºÜ¿ÉÄÜ×ö¹ıÍ¬ÑùµÄÊıÖµµÄ²ğ·Ö£©
+            split(number - primes[pos], 0, factors, primes[pos]);  //è¿™é‡Œå¯èƒ½æœ‰å·¨å¤§çš„æ€§èƒ½é—®é¢˜ï¼ˆè™½ç„¶numberè¢«å‡å°äº†ï¼Œä½†æ˜¯ä¾ç„¶æ˜¯ä¸€ä¸ªçç¢çš„æ‹†åˆ†ï¼Œä¸”ä¹‹å‰å¾ˆå¯èƒ½åšè¿‡åŒæ ·çš„æ•°å€¼çš„æ‹†åˆ†ï¼‰
             ++pos;
         }
         clock_t t_step_4 = clock();
@@ -150,7 +150,7 @@ public:
     }
 
 
-    //½«n²ğ·Ö³ÉÖÊÊıÖ®ºÍ£¨¸÷ÖÖ¿ÉÄÜµÄ×éºÏÈ«²¿´¦Àíµ½£©£¬cur_prime ÊÇ×îºó¼ÆËãµÄÊ±ºòÒª´øÉÏµÄ¶îÍâÒ»ÏîÖÊÊı
+    //å°†næ‹†åˆ†æˆè´¨æ•°ä¹‹å’Œï¼ˆå„ç§å¯èƒ½çš„ç»„åˆå…¨éƒ¨å¤„ç†åˆ°ï¼‰ï¼Œcur_prime æ˜¯æœ€åè®¡ç®—çš„æ—¶å€™è¦å¸¦ä¸Šçš„é¢å¤–ä¸€é¡¹è´¨æ•°
     void split(int n, size_t pos, vector<int>& factors, int cur_prime) {
         if (n == 0) {
             //product all elements of factors
@@ -171,7 +171,7 @@ public:
             }
         }
     }
-    //½«n²ğ·Ö³ÉÖÊÊıÖ®ºÍ£¨¸÷ÖÖ¿ÉÄÜµÄ×éºÏÈ«²¿´¦Àíµ½£©
+    //å°†næ‹†åˆ†æˆè´¨æ•°ä¹‹å’Œï¼ˆå„ç§å¯èƒ½çš„ç»„åˆå…¨éƒ¨å¤„ç†åˆ°ï¼‰
     void split(int n, size_t pos, vector<int>& factors) {
         if (n == 0) {
             //product all elements of factors
@@ -192,7 +192,7 @@ public:
     }
 
 private:
-    //ÅĞ¶Ïµ±Ç°ÒÑÓĞµÄ²ğ·Ö·½°¸Àï£¬ÊÇ·ñÒÑ´æÔÚÓëmerged·½Ê½ÏàÍ¬µÄÁË
+    //åˆ¤æ–­å½“å‰å·²æœ‰çš„æ‹†åˆ†æ–¹æ¡ˆé‡Œï¼Œæ˜¯å¦å·²å­˜åœ¨ä¸mergedæ–¹å¼ç›¸åŒçš„äº†
     bool merged_exists(const vector<int>& merged, long& time_span) {
         clock_t t_merge_exist_begin = clock();
         for (const vector<int>& v : splits) {
@@ -206,7 +206,7 @@ private:
         time_span += t_merge_exist_end - t_merge_exist_begin;
         return false;
     }
-    //ÅĞ¶ÏÁ½¸öÊı¾İÁĞÊÇ·ñÏàÍ¬£¨Ã¿¸öÊı¾İÁĞ¾ÍÊÇÒ»¸ö²ğ·Ö·½°¸£¬¶¼ÊÇÊı¾İÓĞĞòµÄ£©
+    //åˆ¤æ–­ä¸¤ä¸ªæ•°æ®åˆ—æ˜¯å¦ç›¸åŒï¼ˆæ¯ä¸ªæ•°æ®åˆ—å°±æ˜¯ä¸€ä¸ªæ‹†åˆ†æ–¹æ¡ˆï¼Œéƒ½æ˜¯æ•°æ®æœ‰åºçš„ï¼‰
     bool is_same(const vector<int>& v, const vector<int>& merged) const {
         if (v.size() != merged.size())
             return false;
@@ -219,7 +219,7 @@ private:
     }
     
 private:
-    //ºÏ²¢Á½¸öÊı¾İÁĞ£¨±£³ÖÓĞĞò£º´ÓĞ¡µ½´ó£©
+    //åˆå¹¶ä¸¤ä¸ªæ•°æ®åˆ—ï¼ˆä¿æŒæœ‰åºï¼šä»å°åˆ°å¤§ï¼‰
     long merge(const vector<int>& vl, const vector<int>& vr, vector<int>& merged) const {
         clock_t t_merge_begin = clock();
         merged.reserve(vl.size() + vr.size());
@@ -248,7 +248,7 @@ private:
         //cout << "merge time : " << t_merge_end - t_merge_begin << endl;
         return t_merge_end - t_merge_begin;
     }
-    //ºÏ²¢ÊıÁĞºÍÒ»¸öÊı×Ö£¨±£³ÖÓĞĞò£º´ÓĞ¡µ½´ó£©
+    //åˆå¹¶æ•°åˆ—å’Œä¸€ä¸ªæ•°å­—ï¼ˆä¿æŒæœ‰åºï¼šä»å°åˆ°å¤§ï¼‰
     void merge(const vector<int>& v, const int n, vector<int>& merged) {
         merged.reserve(v.size() + 1);
         size_t i = 0;
@@ -268,7 +268,7 @@ private:
     }
 
 private:
-    //ÖÊÊıÅĞ¶Ï
+    //è´¨æ•°åˆ¤æ–­
     bool is_prime(int number) {
         if (BITS_OF_BYTE*sizeof(bytes) <= number) {
             return false;
@@ -278,13 +278,13 @@ private:
         int pos = number % BITS_OF_BYTE;
         return 0x00 == (bytes[index] & (0x01 << pos));
     }
-    //ÕÒ³öĞ¡ÓÚµÈÓÚnµÄ×î´óÖÊÊı£¬Èç¹ûÊÇn-1£¬ÔòÕÒÒ»¸ö¸üĞ¡Ò»µãµÄ
+    //æ‰¾å‡ºå°äºç­‰äºnçš„æœ€å¤§è´¨æ•°ï¼Œå¦‚æœæ˜¯n-1ï¼Œåˆ™æ‰¾ä¸€ä¸ªæ›´å°ä¸€ç‚¹çš„
     int max_prime(int n) {
-        //Èç¹ûnÊÇÖÊÊı£¬Ôò·µ»Øn
+        //å¦‚æœnæ˜¯è´¨æ•°ï¼Œåˆ™è¿”å›n
         if (is_prime(n))
             return n;
 
-        //·ñÔò£¬»ñÈ¡±ÈnĞ¡µÄ×î´óÖÊÊım£¬½öµ±m = n-1Ê±£¬ÕÒ±ÈmĞ¡µÄ×î´óÖÊÊı£¨ÒòÎªn²»¿ÉÒÔ²ğ·Ö³É m + 1 ÕâÑùµÄ×éºÏ£©
+        //å¦åˆ™ï¼Œè·å–æ¯”nå°çš„æœ€å¤§è´¨æ•°mï¼Œä»…å½“m = n-1æ—¶ï¼Œæ‰¾æ¯”må°çš„æœ€å¤§è´¨æ•°ï¼ˆå› ä¸ºnä¸å¯ä»¥æ‹†åˆ†æˆ m + 1 è¿™æ ·çš„ç»„åˆï¼‰
         for (size_t i = 0; i < primes.size(); ++i) {
             if (n < primes[i]) {
                 if (0 < i) {
@@ -299,15 +299,15 @@ private:
                     }
                 }
 
-                break; //Ç°ÃæµÄreturn ²ÅÊÇ³ö¿Ú£¬Ó¦¸Ã²»¿ÉÄÜĞèÒª×ßµ½Õâ¸öbreak£¬ÕâÖ»ÊÇÔÚÓï·¨ÉÏµÄÒ»¸ö±£ÏÕ
+                break; //å‰é¢çš„return æ‰æ˜¯å‡ºå£ï¼Œåº”è¯¥ä¸å¯èƒ½éœ€è¦èµ°åˆ°è¿™ä¸ªbreakï¼Œè¿™åªæ˜¯åœ¨è¯­æ³•ä¸Šçš„ä¸€ä¸ªä¿é™©
             }
         }
 
-        return 0; //ÕâÀïÒ²ÊÇ²»Ó¦¸Ã×ßµ½µÄÓï¾ä£¬³ı·Çn±¾Éí²»ÊÇÕıÕûÊı
+        return 0; //è¿™é‡Œä¹Ÿæ˜¯ä¸åº”è¯¥èµ°åˆ°çš„è¯­å¥ï¼Œé™¤énæœ¬èº«ä¸æ˜¯æ­£æ•´æ•°
     }
 
 public:
-    //½«Êı¾İÁĞµÄËùÓĞÔªËØÀÛ³Ë £¨Èç¹û³Ë»ı³¬¹ı9Î»Êı£¬Ôò½ö±£ÁôÄ©Î²µÄ9Î»£©
+    //å°†æ•°æ®åˆ—çš„æ‰€æœ‰å…ƒç´ ç´¯ä¹˜ ï¼ˆå¦‚æœä¹˜ç§¯è¶…è¿‡9ä½æ•°ï¼Œåˆ™ä»…ä¿ç•™æœ«å°¾çš„9ä½ï¼‰
     long product_with_limit(const vector<int>& factors) {
         long t = 1;
         for (int n : factors) {
@@ -315,7 +315,7 @@ public:
         }
         return t;
     }
-    //½«Á½¸öÊıÏà³Ë£¨Èç¹û³Ë»ıÊÇÒ»¸ö³¬¹ı9Î»ÊıµÄÊı£¬Ôò½ö±£ÁôÄ©Î²µÄ9Î»£©
+    //å°†ä¸¤ä¸ªæ•°ç›¸ä¹˜ï¼ˆå¦‚æœä¹˜ç§¯æ˜¯ä¸€ä¸ªè¶…è¿‡9ä½æ•°çš„æ•°ï¼Œåˆ™ä»…ä¿ç•™æœ«å°¾çš„9ä½ï¼‰
     long product_with_limit(long first, long second) {
         if (BILLION <= first || BILLION <= second) {
             cout << "ERROR : product_with_limit (" << first << ", " << second << ")." << endl;
@@ -325,7 +325,7 @@ public:
         long temp_result = first * second;
         return temp_result % BILLION;
     }
-    //½«Á½¸öÊıÏà¼Ó£¨Èç¹ûºÍ³¬¹ı9Î»£¬Ôò½ö±£ÁôÄ©Î²9Î»£©
+    //å°†ä¸¤ä¸ªæ•°ç›¸åŠ ï¼ˆå¦‚æœå’Œè¶…è¿‡9ä½ï¼Œåˆ™ä»…ä¿ç•™æœ«å°¾9ä½ï¼‰
     long plus_with_limit(long first, long second) {
         if (BILLION <= first || BILLION <= second) {
             cout << "ERROR : plus_with_limit (" << first << ", " << second << ")." << endl;
@@ -337,7 +337,7 @@ public:
     }
    
 private:
-    //´òÓ¡ÓÃµÄ£¬Ã»ÓĞÆäËû×÷ÓÃ
+    //æ‰“å°ç”¨çš„ï¼Œæ²¡æœ‰å…¶ä»–ä½œç”¨
     void print_and_check() const {
         cout << "number :" << number << ", cnt of splits : " << splits.size() << endl;
         /*

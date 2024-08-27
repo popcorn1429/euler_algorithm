@@ -74,7 +74,7 @@ void resolution() {
     special_primes.push_back(673);
 
     const size_t BITS_PER_BYTE = 8;
-    const size_t MAX_BYTES = 1024 * 1024 * 1024; //ÎŞ·¨ÉêÇëÕâÃ´´óµÄ¿Õ¼ä ËµÃ÷ÕâµÀÌâ²»ÄÜÕâÃ´½â
+    const size_t MAX_BYTES = 1024 * 1024 * 1024; //æ— æ³•ç”³è¯·è¿™ä¹ˆå¤§çš„ç©ºé—´ è¯´æ˜è¿™é“é¢˜ä¸èƒ½è¿™ä¹ˆè§£
     unsigned char* primes = nullptr;
     try {
         primes = new unsigned char[MAX_BYTES];
@@ -93,8 +93,8 @@ void resolution() {
     long limit_max_number = BITS_PER_BYTE*MAX_BYTES / 1024;
     cout << "limit is " << limit_max_number << endl;
     for (int number = 677; number < limit_max_number; number += 2) {
-        if (is_prime(primes, MAX_BYTES, number)) {  //Ê×ÏÈnumber±¾ÉíÊÇÒ»¸öÖÊÊı
-            if (are_all_primes(primes, MAX_BYTES, special_primes, number)) { //Æä´ÎnumberÓëÇ°¼¸¸öÖÊÊıµÄÈÎÒâÆ´½Ó¶¼ÊÇÒ»¸öĞÂÖÊÊı
+        if (is_prime(primes, MAX_BYTES, number)) {  //é¦–å…ˆnumberæœ¬èº«æ˜¯ä¸€ä¸ªè´¨æ•°
+            if (are_all_primes(primes, MAX_BYTES, special_primes, number)) { //å…¶æ¬¡numberä¸å‰å‡ ä¸ªè´¨æ•°çš„ä»»æ„æ‹¼æ¥éƒ½æ˜¯ä¸€ä¸ªæ–°è´¨æ•°
                 cout << "when number is " << number << ", all can be primes!" << endl;
                 break;
             }

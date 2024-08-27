@@ -3,16 +3,16 @@
 
 #include "basic_headers.h"
 /*
-* ֮ǰ����Ŀ�����������⵼�¸��ֵò������~~~~ֻ�ò������ϵĽⷨ���ŷ����������~
-* ����Ȿ��Ҳ�и����⣬ֻ��˵���ܺ���ı�����Ӣ�ĵ��ʣ��ܲ��Ͻ�
-* Ӧ��ֱ��˵���ܵ��ı���һ��Ӣ�����¶��䣬��������Ӣ�ĵ��ʿ��԰���������һЩ�ַ�������ո� ��� ����֮��ģ�
-* ��Ȼ����ô֪���������ʵ���˼��ÿһ�������Ƿֿ��ģ��һ���Ϊȫ����Ӣ����ĸ�����е�һ��Ƭ���ǵ��ʾͿ�����~
-* ��˵�ˣ����ʱ���Ҳ���Ǻ����ܵĸ����
-* �����Ұ�����ţ��ʵ�����е��ʶ����ȱ�������������һ�����ȶԣ���Ȼ����ô�������ж�֮��ķ�ʽ֪������Ƿ���ȷ��~
-* ���⣬���˵��һ�����£���ô����ʹ��ÿ���ַ��ĳ���Ƶ�ʣ�����ո��Ƶ�ʻ�ܸߣ����� e�ĳ���Ƶ�ʻ�ܸߣ�����������
-* ����û��������˵�������ּ����ȱ����֤
-* ���һ�㣬��Ϊ�����⣬����Ƿ������£����߰������ʣ�������Ҫ�˹��жϵģ������޷�д���ɿ������жϽ���Ƿ���õķ�ʽ
-* �����ⲻ��һ�����������ϵı���⣬����ֻ�ǰѻ�е�����������һ�£�������ֻ�ܿ����Լ��ж��Ƿ������
+* 之前对题目的理解有问题导致各种得不到结果~~~~只好查了网上的解法，才发现理解错了~
+* 这道题本身也有个问题，只是说解密后的文本包含英文单词，很不严谨
+* 应该直接说解密的文本是一段英文文章段落，这样除了英文单词可以包含其它的一些字符（比如空格 句点 括号之类的）
+* 不然我怎么知道包含单词的意思是每一个单词是分开的，我还以为全部都英文字母，其中的一个片段是单词就可以了~
+* 再说了，单词本身也不是很严密的概念啊，
+* 除非我把整个牛津词典的所有单词都事先保存下来，后面一个个比对，不然我怎么用肉眼判断之外的方式知道解答是否正确呢~
+* 另外，如果说是一段文章，那么才能使用每个字符的出现频率（比如空格的频率会很高，或者 e的出现频率会很高）来帮助解题
+* 但是没有这样的说明，这种假设就缺乏验证
+* 最后一点，作为程序题，结果是否是文章（或者包含单词）都是需要人工判断的，代码无法写出可靠的自判断结果是否可用的方式
+* 所以这不是一道真正意义上的编程题，代码只是把机械解码过程做了一下，解码结果只能靠人自己判断是否合理。
 */
 
 size_t translate(const char *content, size_t len, char *dest) {
@@ -60,13 +60,13 @@ void resolution() {
     string file_name = "p059_cipher.txt";
     ifstream ifile(file_name);
     if (ifile.is_open()) {
-        char original_content[4096] = { 0 };  //�����ļ�������ı�
+        char original_content[4096] = { 0 };  //加密文件里面的文本
         ifile.read(original_content, sizeof(original_content));
 
         char encrypted_content[2048] = { 0 };
         size_t len = translate(original_content, sizeof(original_content), encrypted_content);
         cout << "encrypted_content len is " << len << endl;
-        char plain_text[2048] = { 0 };  //ԭʼ���ݣ����ܳ������ı�
+        char plain_text[2048] = { 0 };  //原始内容：解密出来的文本
 
         string output_file_name = "original.txt";
         ofstream ofile(output_file_name);
@@ -78,7 +78,7 @@ void resolution() {
         char output_content[64] = { 0 };
 
         long sum_of_ascii = 0;
-        char encryption_key[4] = { 0 }; //���룺��������Сд��ĸ
+        char encryption_key[4] = { 0 }; //密码：包含三个小写字母
         for (encryption_key[0] = 'a'; encryption_key[0] <= 'z'; ++encryption_key[0]) {
             for (encryption_key[1] = 'a'; encryption_key[1] <= 'z'; ++encryption_key[1]) {
                 for (encryption_key[2] = 'a'; encryption_key[2] <= 'z'; ++encryption_key[2]) {
